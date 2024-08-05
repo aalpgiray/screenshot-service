@@ -57,6 +57,7 @@ export class ScreenshotService {
 			const imageBuffer = await page.screenshot({
 				type: "png",
 				animations: "disabled",
+				caret: "hide",
 			});
 
 			void context.close({

@@ -1,13 +1,8 @@
 import { Elysia, t } from "elysia";
-import { ScreenshotService } from "../../services/ScreenshotService";
+import { screenshotPlugin } from "../../plugins/screenshotPlugin";
 
 export const screenshotRoute = new Elysia()
-	.decorate({
-		screenshotService: await ScreenshotService.create(24),
-	})
-	.onStop(async ({ decorator: { screenshotService } }) => {
-		await screenshotService.dispose();
-	})
+	.use(screenshotPlugin)
 	.group("/screenshot", (group) =>
 		group.get(
 			"/",
